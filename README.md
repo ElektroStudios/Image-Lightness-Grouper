@@ -1,58 +1,66 @@
 ﻿<!-- Common Project Tags:
-command-line 
-console-applications 
-desktop-app 
-desktop-application 
-dotnet 
-dotnet-core 
-netcore 
-netframework 
-netframework48 
-tool 
-tools 
-vbnet 
-visualstudio 
-windows 
-windows-app 
-windows-application 
-windows-applications 
-windows-forms 
-winforms 
+bitmap
+classification
+desktop-app
+desktop-application
+dotnet
+file-organizer
+image-processing
+images
+lightness
+luminance
+cie-lab
+netframework
+netframework48
+organizer
+tool
+tools
+vbnet
+visualstudio
+wallpapers
+webp
+windows
+windows-app
+windows-application
+windows-applications
+windows-forms
+winforms
  -->
+
 
 <div align="center">
   <img src="/Images/App.ico" width="100" alt="Logo">
   
-  <h1>PROJECT NAME</h1>
+  <h1>Image Lightness Grouper</h1>
 
-### PROJECT DESCRIPTION
+### A desktop tool to group image files into folders by their perceived lightness.
 
 </div>
 
 ------------------
 
 <p align="center">
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/network/members"><img src="https://img.shields.io/github/forks/ElektroStudios/PROJECT_NAME.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%F0%9F%8D%B4%20Forks" alt="Forks"></a>&nbsp;
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/graphs/contributors"><img src="https://img.shields.io/github/contributors/ElektroStudios/PROJECT_NAME.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%F0%9F%91%A5%20Contributors" alt="Contributors"></a>&nbsp;
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/network/members"><img src="https://img.shields.io/github/forks/ElektroStudios/Image-Lightness-Grouper.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%F0%9F%8D%B4%20Forks" alt="Forks"></a>&nbsp;
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/graphs/contributors"><img src="https://img.shields.io/github/contributors/ElektroStudios/Image-Lightness-Grouper.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%F0%9F%91%A5%20Contributors" alt="Contributors"></a>&nbsp;
     <a href="https://github.com/ElektroStudios"><img src="https://img.shields.io/github/followers/ElektroStudios.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%F0%9F%91%A4%20Followers" alt="Followers"></a>&nbsp;
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/watchers"><img src="https://img.shields.io/github/watchers/ElektroStudios/PROJECT_NAME.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%F0%9F%91%80%20Watchers" alt="Watchers"></a>
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/watchers"><img src="https://img.shields.io/github/watchers/ElektroStudios/Image-Lightness-Grouper.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%F0%9F%91%80%20Watchers" alt="Watchers"></a>
     <a href="https://github.com/sponsors/ElektroStudios"><img src="https://img.shields.io/github/sponsors/ElektroStudios.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%F0%9F%92%96%20Sponsors" alt="Sponsors"></a>&nbsp;
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/stargazers"><img src="https://img.shields.io/github/stars/ElektroStudios/PROJECT_NAME.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%E2%AD%90%20Stars" alt="Stars"></a>
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/stargazers"><img src="https://img.shields.io/github/stars/ElektroStudios/Image-Lightness-Grouper.svg?style=social&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg%3D%3D&label=%E2%AD%90%20Stars" alt="Stars"></a>
   <br>
   <br>
-    <a href="https://ci.appveyor.com/project/ElektroStudios/PROJECT_NAME"><img src="https://ci.appveyor.com/api/projects/status/github/ElektroStudios/PROJECT_NAME?svg=true" alt="AppVeyor CI"></a>
-    <a href="https://sonarcloud.io/summary/new_code?id=ElektroStudios_PROJECT_NAME"><img src="https://sonarcloud.io/api/project_badges/measure?project=ElektroStudios_PROJECT_NAME&metric=alert_status" alt="SonarCloud Quality Gate"></a>
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/releases/latest"><img src="https://img.shields.io/github/v/release/ElektroStudios/PROJECT_NAME" alt="Latest Release"></a>
+    <a href="https://ci.appveyor.com/project/ElektroStudios/Image-Lightness-Grouper"><img src="https://ci.appveyor.com/api/projects/status/github/ElektroStudios/Image-Lightness-Grouper?svg=true" alt="AppVeyor CI"></a>
+    <a href="https://sonarcloud.io/summary/new_code?id=ElektroStudios_Image-Lightness-Grouper"><img src="https://sonarcloud.io/api/project_badges/measure?project=ElektroStudios_Image-Lightness-Grouper&metric=alert_status" alt="SonarCloud Quality Gate"></a>
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/releases/latest"><img src="https://img.shields.io/github/v/release/ElektroStudios/Image-Lightness-Grouper" alt="Latest Release"></a>
     <a href="https://learn.microsoft.com/en-us/dotnet/visual-basic/"><img src="https://img.shields.io/badge/language-VB.NET-purple.svg?logo=visualbasic" alt="Language"></a>
     <a href="https://learn.microsoft.com/en-us/windows/apps/"><img src="https://img.shields.io/badge/platform-Windows-lightgray.svg" alt="Platform"></a>
-    <a href="LICENSE"><img src="https://img.shields.io/github/license/ElektroStudios/PROJECT_NAME" alt="License"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/ElektroStudios/Image-Lightness-Grouper" alt="License"></a>
   <br>
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/archive/HEAD.zip"><img src="https://img.shields.io/github/repo-size/ElektroStudios/PROJECT_NAME" alt="Repo size"></a>
-    <a href="https://somsubhra.github.io/github-release-stats/?username=ElektroStudios&repository=PROJECT_NAME"><img src="https://img.shields.io/github/downloads/ElektroStudios/PROJECT_NAME/total.svg?label=total%20downloads" alt="Total Downloads"></a>
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/commits"><img src="https://img.shields.io/github/last-commit/ElektroStudios/PROJECT_NAME" alt="Last commit"></a>
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/pulls"><img src="https://img.shields.io/github/issues-pr/ElektroStudios/PROJECT_NAME" alt="Pull Requests"></a>
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/issues?q=is%3Aissue+is%3Aopen"><img src="https://img.shields.io/github/issues/ElektroStudios/PROJECT_NAME?color=blue" alt="Open Issues"></a><a href="https://github.com/ElektroStudios/PROJECT_NAME/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/ElektroStudios/PROJECT_NAME?label=&color=28a745" alt="Closed Issues"></a>
-    <a href="https://github.com/ElektroStudios/PROJECT_NAME/pulse"><img src="https://img.shields.io/badge/maintained-yes-green.svg" alt="Maintenance"></a>
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/archive/HEAD.zip"><img src="https://img.shields.io/github/repo-size/ElektroStudios/Image-Lightness-Grouper" alt="Repo size"></a>
+    <a href="https://somsubhra.github.io/github-release-stats/?username=ElektroStudios&repository=Image-Lightness-Grouper"><img src="https://img.shields.io/github/downloads/ElektroStudios/Image-Lightness-Grouper/total.svg?label=total%20downloads" alt="Total Downloads"></a>
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/commits"><img src="https://img.shields.io/github/last-commit/ElektroStudios/Image-Lightness-Grouper" alt="Last commit"></a>
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/pulls"><img src="https://img.shields.io/github/issues-pr/ElektroStudios/Image-Lightness-Grouper" alt="Pull Requests"></a>
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/issues?q=is%3Aissue+is%3Aopen"><img src="https://img.shields.io/github/issues/ElektroStudios/Image-Lightness-Grouper?color=blue" alt="Open Issues"></a><a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/ElektroStudios/Image-Lightness-Grouper?label=&color=28a745" alt="Closed Issues"></a>
+    <a href="https://github.com/ElektroStudios/Image-Lightness-Grouper/pulse"><img src="https://img.shields.io/badge/maintained-yes-green.svg" alt="Maintenance"></a>
   <br>
   <br>
     <a href="https://en.wikipedia.org/wiki/Spanish_Empire"><img src="https://img.shields.io/badge/Made_in-Spain_%F0%9F%87%AA%F0%9F%87%B8-AA151B?style=flat" alt="Made in Spain"></a>
@@ -62,41 +70,55 @@ winforms
 
 ## 👋 Introduction
 
-INTRODUCTION TEXT
+**Image Lightness Grouper** is a desktop utility that scans a folder of images (optionally including all its subfolders) and groups every image into a folder according to its average lightness, measured in the perceptually accurate **CIE L\* color space** (from 0% = black to 100% = white).
+
+Each image is moved into `@Grouped by lightness\Light XX%-YY%`, inside its own folder. With the default 10% interval, the folders are `Light 00%-10%`, `Light 10%-20%` ... `Light 90%-100%`; a night photo ends up in `Light 10%-20%`, a landscape in `Light 50%-60%` and a snowy scene in `Light 90%-100%`.
+
+This is the desktop (Windows Forms) successor of the **[Image Lightness Organizer](https://github.com/ElektroStudios/Image-Lightness-Organizer)** command-line tool.
 
 ## 💡 Motivation
 
-MOTIVATION TEXT
+When working with large collections of graphic assets, datasets for machine learning, or wallpaper libraries, sorting images by their visual weight and luminance manually is nearly impossible. Standard file managers only allow sorting by name, date, or dimensions, leaving no native option to group files by how bright or dark they actually appear to the human eye.
+
+Furthermore, standard RGB math fails to reflect true human perception. I built this tool to solve this problem using the CIE L\* color space, providing an automated way to cluster image assets into precise percentage brackets, now with a friendly graphical interface.
 
 ##### ⚡ The Real Question
-###### REAL QUESTION TEXT
+###### How much time do you lose manually hunting for light or dark backgrounds, assets, or textures across disorganized folders when a perceptually accurate algorithm can catalog them for you in seconds?.
 
 ## 🖼️ Screenshots
 
-![screenshot](/Images/screenshot.png)
+<div align="center">
+  <img src="/Images/screenshot1.png" width="49%" alt="Screenshot 1">&nbsp;<img src="/Images/screenshot2.png" width="49%" alt="Screenshot 2">
+</div>
 
 ## 🎦 Videos
 
 <!-- Download a recorded video by clicking [here](/Video/video.mp4) -->
 
 <!-- See a recorded video by clicking on the following button:
-[![PROJECT_NAME DEMO VIDEO](Images/demo_video.jpg)](https://www.youtube.com/watch?v=XXXXXXXXX)  -->
+[![Image-Lightness-Grouper DEMO VIDEO](Images/demo_video.jpg)](https://www.youtube.com/watch?v=XXXXXXXXX)  -->
 
-## 🤖 Features
+## ✨ Features
 
-FEATURES TEXT
-
-## ⚠️ Limitations
-
-LIMITATIONS TEXT
+- Perceptually accurate lightness (CIE L\*), computed from every pixel of the image.
+- Supported formats: JPEG, PNG, BMP, TIFF, WebP, AVIF and ICO.
+- Configurable lightness interval (1% to 10%) and alpha threshold (transparent pixels can be ignored).
+- Optional search in all subdirectories: every folder gets its own output folder, so images of different folders are never mixed.
+- Fast, multi-threaded processing, with an automatic degree of parallelism based on the free memory (or a custom value), that can be cancelled at any time.
+- Real-time output log, and a progress bar that reports the final result (errors or warnings).
+- Safe to run again over an already grouped folder: the output folders and the lightness range folders (even if you rename the output folder) are never scanned again, and existing files are never overwritten.
+- Dark and light themes.
+- Drag and drop a folder onto the window to select it.
+- Remembers your preferences between sessions.
 
 ## 📝 Requirements
 
 - Microsoft Windows OS.
+- .NET Framework 4.8 (already included in Windows 10 version 1903 and newer).
 
 ## 🚀 Getting Started
 
-1. Navigate to the **[Releases page](https://github.com/ElektroStudios/PROJECT_NAME/releases/latest)**.
+1. Navigate to the **[Releases page](https://github.com/ElektroStudios/Image-Lightness-Grouper/releases/latest)**.
 2. Download the latest `.zip` archive or the `.exe` setup installer, depending on your preference.
 3. If you downloaded the `.zip` archive, extract its contents to your preferred directory.
    <br> 
@@ -109,15 +131,9 @@ Explore the complete list of changes, bug fixes, and improvements across differe
 
 ------------------
 
-## 🏆 Credits
-
-This work relies on the following technologies, libraries or resources: 
-
- - [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
-
 ## 💪 Contributing
 
-Your contribution is highly appreciated!. If you have any ideas, suggestions, or encounter issues, feel free to open an issue by clicking [here](https://github.com/ElektroStudios/PROJECT_NAME/issues/new/choose). 
+Your contribution is highly appreciated!. If you have any ideas, suggestions, or encounter issues, feel free to open an issue by clicking [here](https://github.com/ElektroStudios/Image-Lightness-Grouper/issues/new/choose). 
 
 Your input helps make this Work better for everyone. Thank you for your support! 🚀
 
@@ -139,6 +155,14 @@ This work is distributed for educational purposes and without any profit motive.
 </div>
 
 ------------------
+
+## 🏆 Credits
+
+This work relies on the following technologies and libraries: 
+
+ - [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
+ - [Ookii.Dialogs.WinForms](https://github.com/ookii-dialogs/ookii-dialogs-winforms)
+ - [SkiaSharp](https://github.com/mono/SkiaSharp)
 
 ## ⚠️ Disclaimer
 
