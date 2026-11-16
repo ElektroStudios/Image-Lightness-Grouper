@@ -45,10 +45,17 @@ Namespace ImageLightnessGrouper.CommandLine
                 Throw New ArgumentNullException(NameOf(args))
             End If
 
-            ' The help switch wins over everything else, so "/?" can be appended to any command line.
-            If args.Count = 0 OrElse args.Any(Function(argument As String) CommandLineSyntax.IsHelpSwitch(argument)) Then
+            ' Without arguments, the help is shown.
+            If args.Count = 0 Then
                 Return CommandLineArguments.ForHelp()
             End If
+
+            ' The help switch wins over everything else (even over invalid arguments), so "/?" can be appended to any command line.
+            For Each argument As String In args
+                If CommandLineSyntax.IsHelpSwitch(argument) Then
+                    Return CommandLineArguments.ForHelp()
+                End If
+            Next
 
             Dim directories As New List(Of String)()
             Dim switchValues As New Dictionary(Of String, String)(StringComparer.Ordinal)
