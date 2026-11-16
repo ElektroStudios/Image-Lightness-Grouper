@@ -30,11 +30,6 @@ Namespace ImageLightnessGrouper.Forms
 #Region " Constants and Read-only Fields "
 
         ''' <summary>
-        ''' The horizontal rule used to separate sections in the virtual console.
-        ''' </summary>
-        Private Const ConsoleRule As String = "====================================================================="
-
-        ''' <summary>
         ''' The culture used for numeric formatting in the UI (thousands separators, etc).
         ''' </summary>
         Private Shared ReadOnly FormatCulture As CultureInfo = CultureInfo.GetCultureInfo("en-US")
@@ -132,6 +127,14 @@ Namespace ImageLightnessGrouper.Forms
             Me.WriteWelcomeBanner()
             Me.ResetProgress()
             Me.UpdateUiState()
+
+            ' The command-line argument of the main window: a directory to select right away, or an error to report.
+            Dim startup As StartupArguments = StartupArguments.Current
+            If startup.Directory IsNot Nothing Then
+                Me.SetTargetDirectory(startup.Directory)
+            ElseIf startup.ErrorMessage IsNot Nothing Then
+                Me.logConsole.AppendLine($"[ERROR] {startup.ErrorMessage}", LogSeverity.Error)
+            End If
         End Sub
 
         ''' <inheritdoc/>
@@ -191,6 +194,15 @@ Namespace ImageLightnessGrouper.Forms
         ''' </summary>
         Private Sub ExitMenuItem_Click(sender As Object, e As EventArgs) Handles exitMenuItem.Click
             Me.Close()
+        End Sub
+
+        ''' <summary>
+        ''' Handles the Help > Command-Line Reference menu item.
+        ''' </summary>
+        Private Sub CommandLineReferenceMenuItem_Click(sender As Object, e As EventArgs) Handles commandLineReferenceMenuItem.Click
+            Using referenceForm As New CommandLineReferenceForm()
+                referenceForm.ShowDialog(Me)
+            End Using
         End Sub
 
         ''' <summary>
@@ -394,9 +406,9 @@ Namespace ImageLightnessGrouper.Forms
             Me.SetProcessingState(True)
 
             Me.logConsole.AppendLine(String.Empty, LogSeverity.Information)
-            Me.logConsole.AppendLine(ConsoleRule, LogSeverity.Muted)
+            Me.logConsole.AppendLine(ImageGroupingReport.Rule, LogSeverity.Muted)
             Me.logConsole.AppendLine($"[START] {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", MainForm.FormatCulture)}", LogSeverity.Information)
-            Me.logConsole.AppendLine(ConsoleRule, LogSeverity.Muted)
+            Me.logConsole.AppendLine(ImageGroupingReport.Rule, LogSeverity.Muted)
             Me.progressTimer.Start()
 
             Dim progress As IProgress(Of ImageGroupingProgress) = Me.progressSink
@@ -469,29 +481,16 @@ Namespace ImageLightnessGrouper.Forms
 
             Me.DrainProgress(showOutcome:=False)
 
-            Dim culture As CultureInfo = MainForm.FormatCulture
-            Dim elapsed As String = summary.Elapsed.ToString("hh\:mm\:ss\.fff", culture)
-            Dim hasFailures As Boolean = summary.FailedCount > 0
-            Dim hasConflicts As Boolean = summary.ConflictCount > 0
+            For Each line As LogLine In ImageGroupingReport.GetSummaryLines(summary)
+                Me.logConsole.AppendLine(line.Text, line.Severity)
+            Next
 
-            Me.logConsole.AppendLine(String.Empty, LogSeverity.Information)
-            Me.logConsole.AppendLine(ConsoleRule, LogSeverity.Muted)
-            Me.logConsole.AppendLine($"Total images      : {summary.TotalFiles.ToString("N0", culture)}", LogSeverity.Information)
-            Me.logConsole.AppendLine($"Moved             : {summary.MovedCount.ToString("N0", culture)}", LogSeverity.Moved)
-            Me.logConsole.AppendLine($"Name conflicts    : {summary.ConflictCount.ToString("N0", culture)}", If(hasConflicts, LogSeverity.Warning, LogSeverity.Information))
-            Me.logConsole.AppendLine($"Failed            : {summary.FailedCount.ToString("N0", culture)}", If(hasFailures, LogSeverity.Error, LogSeverity.Information))
-            Me.logConsole.AppendLine($"Parallel images   : {summary.DegreeOfParallelism.ToString("N0", culture)}", LogSeverity.Information)
-            Me.logConsole.AppendLine($"Elapsed time      : {elapsed}", LogSeverity.Information)
-            Me.logConsole.AppendLine(ConsoleRule, LogSeverity.Muted)
-
-            If hasFailures Then
-                Me.logConsole.AppendLine($"[WARNING] Operation completed with {summary.FailedCount.ToString("N0", culture)} failure(s). Review the [ERROR] lines above.", LogSeverity.Error)
-                Me.statusLabel.Text = $"Completed with {summary.FailedCount.ToString("N0", culture)} failure(s) in {elapsed}."
-            ElseIf hasConflicts Then
-                Me.logConsole.AppendLine($"[WARNING] Operation completed. {summary.ConflictCount.ToString("N0", culture)} image(s) were left in place because of a name conflict. Review the [CONFLICT] lines above.", LogSeverity.Warning)
-                Me.statusLabel.Text = $"Completed in {elapsed}, with {summary.ConflictCount.ToString("N0", culture)} name conflict(s)."
+            Dim elapsed As String = ImageGroupingReport.FormatElapsed(summary.Elapsed)
+            If summary.FailedCount > 0 Then
+                Me.statusLabel.Text = $"Completed with {ImageGroupingReport.FormatCount(summary.FailedCount)} failure(s) in {elapsed}."
+            ElseIf summary.ConflictCount > 0 Then
+                Me.statusLabel.Text = $"Completed in {elapsed}, with {ImageGroupingReport.FormatCount(summary.ConflictCount)} name conflict(s)."
             Else
-                Me.logConsole.AppendLine($"[SUCCESS] Operation completed. Moved {summary.MovedCount.ToString("N0", culture)} image(s).", LogSeverity.Success)
                 Me.statusLabel.Text = $"Completed successfully in {elapsed}."
             End If
 
@@ -737,6 +736,7 @@ Namespace ImageLightnessGrouper.Forms
             End If
 
             Me.directoryTextBox.Text = directoryPath
+            Me.directoryTextBox.MoveCaretToEnd()
             Me.SetToolTipIncludingChildControls(Me.directoryTextBox, directoryPath)
             Me.logConsole.AppendLine($"Target directory set to '{directoryPath}'.", LogSeverity.Muted)
 
@@ -884,7 +884,7 @@ Namespace ImageLightnessGrouper.Forms
             console.AppendLine(String.Empty, LogSeverity.Muted)
             console.AppendLine("Supported formats: JPEG, PNG, BMP, TIFF, WebP, AVIF and ICO.", LogSeverity.Muted)
             console.AppendLine("Tip: drag and drop a single folder anywhere on this window to select it.", LogSeverity.Muted)
-            console.AppendLine(ConsoleRule, LogSeverity.Muted)
+            console.AppendLine(ImageGroupingReport.Rule, LogSeverity.Muted)
         End Sub
 
 #End Region

@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Image Lightness Grouper.Core</AssemblyName>
+    <RootNamespace></RootNamespace>
+    <MyType>Empty</MyType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>Off</OptionInfer>
+    <OptionCompare>Binary</OptionCompare>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyTitle>Image Lightness Grouper Core</AssemblyTitle>
+    <Description>Shared logic of Image Lightness Grouper: computes the lightness of images and groups them into folders.</Description>
+    <Company>ElektroStudios</Company>
+    <Product>Image Lightness Grouper</Product>
+    <Copyright>Copyright © ElektroStudios 2026</Copyright>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0.0</Version>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp" Version="4.156.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="System" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Image Lightness Grouper.Tests" />
+  </ItemGroup>
+
+  <!--
+    SkiaSharp copies its native library (libSkiaSharp.dll) into x86, x64 and arm64 subfolders, and loads the one that
+    matches the process architecture. The AnyCPU .NET Framework 4.8 applications run as x64 on 64-bit Windows and as
+    x86 on 32-bit Windows (on Windows on ARM they run as emulated x64), so the arm64 folder is never used.
+  -->
+  <Target Name="RemoveUnusedSkiaSharpArm64Library" AfterTargets="Build">
+    <RemoveDir Directories="$(OutDir)arm64" />
+  </Target>
+
+</Project>

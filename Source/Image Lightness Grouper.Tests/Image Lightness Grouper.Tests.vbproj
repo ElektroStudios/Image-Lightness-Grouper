@@ -32,6 +32,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Image Lightness Grouper\Image Lightness Grouper.vbproj" />
+    <ProjectReference Include="..\Image Lightness Grouper.Core\Image Lightness Grouper.Core.vbproj" />
+    <ProjectReference Include="..\Image Lightness Grouper.CLI\Image Lightness Grouper.CLI.vbproj" />
   </ItemGroup>
 
   <ItemGroup>

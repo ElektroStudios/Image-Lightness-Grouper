@@ -35,6 +35,8 @@ Namespace ImageLightnessGrouper.Forms
             Me.fileMenuSeparator = New System.Windows.Forms.ToolStripSeparator()
             Me.exitMenuItem = New System.Windows.Forms.ToolStripMenuItem()
             Me.helpMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+            Me.commandLineReferenceMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+            Me.helpMenuSeparator = New System.Windows.Forms.ToolStripSeparator()
             Me.aboutMenuItem = New System.Windows.Forms.ToolStripMenuItem()
             Me.themeToggleItem = New ImageLightnessGrouper.Controls.ToolStripToggleSwitch()
             Me.rootLayout = New System.Windows.Forms.TableLayoutPanel()
@@ -104,16 +106,27 @@ Namespace ImageLightnessGrouper.Forms
             '
             'helpMenuItem
             '
-            Me.helpMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.aboutMenuItem})
+            Me.helpMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.commandLineReferenceMenuItem, Me.helpMenuSeparator, Me.aboutMenuItem})
             Me.helpMenuItem.Name = "helpMenuItem"
             Me.helpMenuItem.Size = New System.Drawing.Size(44, 22)
             Me.helpMenuItem.Text = "&Help"
+            '
+            'commandLineReferenceMenuItem
+            '
+            Me.commandLineReferenceMenuItem.Name = "commandLineReferenceMenuItem"
+            Me.commandLineReferenceMenuItem.Size = New System.Drawing.Size(225, 22)
+            Me.commandLineReferenceMenuItem.Text = "&Command-Line Reference..."
+            '
+            'helpMenuSeparator
+            '
+            Me.helpMenuSeparator.Name = "helpMenuSeparator"
+            Me.helpMenuSeparator.Size = New System.Drawing.Size(222, 6)
             '
             'aboutMenuItem
             '
             Me.aboutMenuItem.Name = "aboutMenuItem"
             Me.aboutMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-            Me.aboutMenuItem.Size = New System.Drawing.Size(135, 22)
+            Me.aboutMenuItem.Size = New System.Drawing.Size(225, 22)
             Me.aboutMenuItem.Text = "&About..."
             '
             'themeToggleItem
@@ -467,6 +480,8 @@ Namespace ImageLightnessGrouper.Forms
         Friend WithEvents fileMenuSeparator As System.Windows.Forms.ToolStripSeparator
         Friend WithEvents exitMenuItem As System.Windows.Forms.ToolStripMenuItem
         Friend WithEvents helpMenuItem As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents commandLineReferenceMenuItem As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents helpMenuSeparator As System.Windows.Forms.ToolStripSeparator
         Friend WithEvents aboutMenuItem As System.Windows.Forms.ToolStripMenuItem
         Friend WithEvents themeToggleItem As ImageLightnessGrouper.Controls.ToolStripToggleSwitch
         Friend WithEvents rootLayout As System.Windows.Forms.TableLayoutPanel

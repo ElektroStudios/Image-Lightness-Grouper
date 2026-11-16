@@ -23,14 +23,14 @@ Namespace ImageLightnessGrouper.Core
     ''' JPEG, PNG, BMP and TIFF files are decoded by GDI+. WebP, AVIF and ICO files are decoded by SkiaSharp,
     ''' because GDI+ cannot decode WebP and AVIF, and only decodes the first (often smallest) frame of an icon.
     ''' </summary>
-    Friend NotInheritable Class ImageLightnessReader
+    Public NotInheritable Class ImageLightnessReader
 
 #Region " Constants and Read-only Fields "
 
         ''' <summary>
         ''' All the supported image file extensions.
         ''' </summary>
-        Friend Shared ReadOnly SupportedExtensions As ReadOnlyCollection(Of String) = Array.AsReadOnly(
+        Public Shared ReadOnly SupportedExtensions As ReadOnlyCollection(Of String) = Array.AsReadOnly(
             {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp", ".avif", ".ico"})
 
         ''' <summary>
@@ -82,7 +82,7 @@ Namespace ImageLightnessGrouper.Core
         ''' Calling this at startup turns that into a single, explicit error.
         ''' </summary>
         ''' <exception cref="InvalidOperationException">Thrown when the native library cannot be loaded.</exception>
-        Friend Shared Sub EnsureSkiaSharpIsAvailable()
+        Public Shared Sub EnsureSkiaSharpIsAvailable()
             Try
                 ' Any SkiaSharp object creation goes through the native library.
                 Using New SKBitmap(1, 1)

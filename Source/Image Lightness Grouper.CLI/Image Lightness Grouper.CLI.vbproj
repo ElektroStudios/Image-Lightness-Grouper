@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>Image Lightness Grouper.CLI</AssemblyName>
+    <RootNamespace></RootNamespace>
+    <StartupObject>ImageLightnessGrouper.CommandLine.Program</StartupObject>
+    <MyType>Empty</MyType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>Off</OptionInfer>
+    <OptionCompare>Binary</OptionCompare>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <ApplicationIcon>..\Image Lightness Grouper\Resources\AppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyTitle>Image Lightness Grouper CLI</AssemblyTitle>
+    <Description>Groups image files into folders by lightness, from the command line.</Description>
+    <Company>ElektroStudios</Company>
+    <Product>Image Lightness Grouper</Product>
+    <Copyright>Copyright © ElektroStudios 2026</Copyright>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0.0</Version>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Image Lightness Grouper.Core\Image Lightness Grouper.Core.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Referenced here too, so the native libSkiaSharp.dll is copied next to the executable. -->
+    <PackageReference Include="SkiaSharp" Version="4.156.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="System" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Image Lightness Grouper.Tests" />
+  </ItemGroup>
+
+  <!-- See the same target in the Core project: the arm64 native library is never used. -->
+  <Target Name="RemoveUnusedSkiaSharpArm64Library" AfterTargets="Build">
+    <RemoveDir Directories="$(OutDir)arm64" />
+  </Target>
+
+</Project>

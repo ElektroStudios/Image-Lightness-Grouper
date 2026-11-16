@@ -109,19 +109,14 @@
     <Compile Include="Controls\ToolStripToggleSwitch.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Core\ImageGroupingOptions.vb" />
-    <Compile Include="Core\ImageGroupingProgress.vb" />
-    <Compile Include="Core\ImageGroupingService.vb" />
-    <Compile Include="Core\ImageGroupingSummary.vb" />
-    <Compile Include="Core\ImageLightnessReader.vb" />
-    <Compile Include="Core\LightnessCalculator.vb" />
-    <Compile Include="Core\LogSeverity.vb" />
-    <Compile Include="Core\ParallelismCalculator.vb" />
     <Compile Include="Forms\AboutBox.Designer.vb">
       <DependentUpon>AboutBox.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CommandLineReferenceForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.Designer.vb">
@@ -135,10 +130,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Infrastructure\BufferedProgress.vb" />
-    <Compile Include="Infrastructure\NaturalStringComparer.vb" />
     <Compile Include="Infrastructure\OperatingSystemInfo.vb" />
+    <Compile Include="Infrastructure\StartupArguments.vb" />
     <Compile Include="Infrastructure\UserPreferences.vb" />
-    <Compile Include="Infrastructure\UtilApplication.vb" />
     <Compile Include="Theming\AppTheme.vb" />
     <Compile Include="Theming\IThemeable.vb" />
     <Compile Include="Theming\RedrawSuspension.vb" />
@@ -147,7 +141,6 @@
     <Compile Include="Theming\ThemedColorTable.vb" />
     <Compile Include="Theming\ThemedToolStripRenderer.vb" />
     <Compile Include="Theming\WindowChrome.vb" />
-    <Compile Include="Win32\MemoryStatusEx.vb" />
     <Compile Include="Win32\NativeMethods.vb" />
     <Compile Include="Win32\OsVersionInfo.vb" />
     <Compile Include="Win32\Win32Enums.vb" />
@@ -196,6 +189,11 @@
     <Content Include="Resources\AppIcon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Image Lightness Grouper.Core\Image Lightness Grouper.Core.vbproj">
+      <Name>Image Lightness Grouper.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Ookii.Dialogs.WinForms">
       <Version>4.0.0</Version>
     </PackageReference>
@@ -215,4 +213,4 @@
   <Target Name="RemoveUnusedSkiaSharpArm64Library" AfterTargets="Build">
     <RemoveDir Directories="$(OutDir)arm64" />
   </Target>
-</Project>
+</Project>

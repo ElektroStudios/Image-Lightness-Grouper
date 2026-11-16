@@ -111,6 +111,7 @@ Furthermore, standard RGB math fails to reflect true human perception. I built t
 - Dark and light themes.
 - Drag and drop a folder onto the window to select it.
 - Remembers your preferences between sessions.
+- Command-line application (`Image Lightness Grouper.CLI.exe`), to group the images from the console or from scripts.
 
 ## 📝 Requirements
 
@@ -125,6 +126,42 @@ Furthermore, standard RGB math fails to reflect true human perception. I built t
    <br> 
    If you downloaded the `.exe` file, run it and follow the installation wizard.
 4. Run the executable file to launch the application.
+
+## ⌨️ Command-Line Usage
+
+The command-line application is `Image Lightness Grouper.CLI.exe`:
+
+```
+"Image Lightness Grouper.CLI.exe" <directory> [options]   Groups the images of the directory.
+"Image Lightness Grouper.CLI.exe" /?                      Shows the help (also without arguments).
+```
+
+| Option | Description | Default |
+|---|---|---|
+| `/recursive`, `/r` | Also processes the subdirectories. | Off |
+| `/step:<n>`, `/s:<n>` | Width of each lightness range, in percent points (1 to 10). | 10 |
+| `/alpha:<n>`, `/a:<n>` | Pixels whose alpha is below this value (0 to 255) are ignored. | 8 |
+| `/parallel:<n>`, `/p:<n>` | Images processed in parallel (0 to 256). 0 = automatic. | 0 |
+
+Switches are case-insensitive, can also start with `-` or `--`, and values can also be written with `=`. The command line never uses nor changes the settings of the main window.
+
+| Exit code | Meaning |
+|---|---|
+| 0 | Success (or the help was shown). |
+| 1 | Completed, but some images were not moved (failures or name conflicts). |
+| 2 | Invalid command-line arguments. |
+| 3 | The directory does not exist or its path is not valid. |
+| 4 | The operation failed (e.g. inaccessible or already grouped directory). |
+| 5 | Cancelled by the user (Ctrl+C). |
+| 6 | A required component is missing (libSkiaSharp.dll). |
+
+Example:
+
+```
+"Image Lightness Grouper.CLI.exe" "C:\Wallpapers" /recursive /step:5
+```
+
+The main window also accepts a directory, which is selected on startup: `"Image Lightness Grouper.exe" "C:\Wallpapers"`. The full reference is also available in the main window, under Help > Command-Line Reference.
 
 ## 🔄 Change Log
 

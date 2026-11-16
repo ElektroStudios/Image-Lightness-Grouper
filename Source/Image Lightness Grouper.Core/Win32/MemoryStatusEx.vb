@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 
 #End Region
 
-Namespace ImageLightnessGrouper.Win32
+Namespace ImageLightnessGrouper.Core.Win32
 
     ''' <summary>
     ''' Contains information about the current state of both physical and virtual memory.

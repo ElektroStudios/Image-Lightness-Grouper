@@ -4,6 +4,9 @@ Option Infer Off
 
 #Region " Imports "
 
+Imports System.Windows.Forms
+
+Imports ImageLightnessGrouper.CommandLine
 Imports ImageLightnessGrouper.Core
 Imports ImageLightnessGrouper.Forms
 Imports ImageLightnessGrouper.Infrastructure
@@ -180,6 +183,105 @@ Namespace ImageLightnessGrouper.Tests.Forms
 
                 Assert.Equal(String.Empty, directoryText)
             End Using
+        End Sub
+
+        ''' <summary>
+        ''' A directory specified in the command line (<c>"Image Lightness Grouper.exe" "C:\Images"</c>) is selected on load,
+        ''' with the caret at the end of the path (its most relevant part), not at the beginning.
+        ''' </summary>
+        <Fact(Skip:=TestEnvironment.WindowsOnlyReason, SkipUnless:=NameOf(TestEnvironment.IsWindowsDesktopFramework), SkipType:=GetType(TestEnvironment))>
+        Public Sub Load_SelectsTheStartupDirectory_WithTheCaretAtTheEnd()
+            Using snapshot As New SettingsSnapshot(),
+                  temp As New TemporaryDirectory()
+
+                Dim directoryText As String = Nothing
+                Dim selectionStart As Integer = -1
+                Dim selectionLength As Integer = -1
+                StartupArguments.Current = StartupArguments.Parse({temp.FullPath}, Environment.CurrentDirectory)
+                Try
+                    StaThreadRunner.Run(
+                        Sub()
+                            Using form As New MainForm()
+                                form.Show()
+                                Application.DoEvents()
+                                directoryText = form.directoryTextBox.Text
+                                selectionStart = form.directoryTextBox.SelectionStart
+                                selectionLength = form.directoryTextBox.SelectionLength
+                                form.Close()
+                            End Using
+                        End Sub)
+                Finally
+                    StartupArguments.Current = New StartupArguments(Nothing, Nothing)
+                End Try
+
+                Assert.Equal(temp.FullPath, directoryText)
+                Assert.Equal(temp.FullPath.Length, selectionStart)
+                Assert.Equal(0, selectionLength)
+            End Using
+        End Sub
+
+        ''' <summary>
+        ''' An invalid command-line argument is reported in the console of the main window (never in a message box),
+        ''' and the window opens without a directory selected.
+        ''' </summary>
+        <Fact(Skip:=TestEnvironment.WindowsOnlyReason, SkipUnless:=NameOf(TestEnvironment.IsWindowsDesktopFramework), SkipType:=GetType(TestEnvironment))>
+        Public Sub Load_InvalidStartupArgument_IsReportedInTheConsole()
+            Using snapshot As New SettingsSnapshot(),
+                  temp As New TemporaryDirectory()
+
+                Dim directoryText As String = Nothing
+                Dim consoleText As String = Nothing
+                StartupArguments.Current = StartupArguments.Parse({temp.Combine("missing")}, Environment.CurrentDirectory)
+                Try
+                    StaThreadRunner.Run(
+                        Sub()
+                            Using form As New MainForm()
+                                form.Show()
+                                form.logConsole.Flush()
+                                directoryText = form.directoryTextBox.Text
+                                consoleText = form.logConsole.Controls.OfType(Of RichTextBox)().Single().Text
+                                form.Close()
+                            End Using
+                        End Sub)
+                Finally
+                    StartupArguments.Current = New StartupArguments(Nothing, Nothing)
+                End Try
+
+                Assert.Equal(String.Empty, directoryText)
+                Assert.Contains($"[ERROR] The directory does not exist: {temp.Combine("missing")}", consoleText)
+            End Using
+        End Sub
+
+        ''' <summary>
+        ''' Help &gt; Command-Line Reference shows the header and the same help as the command-line application,
+        ''' from the top, with the focus on the Close button.
+        ''' </summary>
+        <Fact(Skip:=TestEnvironment.WindowsOnlyReason, SkipUnless:=NameOf(TestEnvironment.IsWindowsDesktopFramework), SkipType:=GetType(TestEnvironment))>
+        Public Sub CommandLineReference_ShowsTheHelp()
+            Dim referenceText As String = Nothing
+            Dim selectionStart As Integer = -1
+            Dim selectionLength As Integer = -1
+            Dim focusedOnClose As Boolean = False
+
+            StaThreadRunner.Run(
+                Sub()
+                    Using form As New CommandLineReferenceForm()
+                        form.Show()
+                        Application.DoEvents()
+                        referenceText = form.referenceTextBox.Text
+                        selectionStart = form.referenceTextBox.SelectionStart
+                        selectionLength = form.referenceTextBox.SelectionLength
+                        focusedOnClose = form.ActiveControl Is form.closeButton
+                        form.Close()
+                    End Using
+                End Sub)
+
+            Assert.StartsWith($"{My.Application.Info.Title} v{My.Application.Info.Version} (", referenceText, StringComparison.Ordinal)
+            Assert.Contains(ProductInfo.RepositoryUrl, referenceText)
+            Assert.EndsWith(CommandLineHelp.GetUsageText(), referenceText, StringComparison.Ordinal)
+            Assert.Equal(0, selectionStart)
+            Assert.Equal(0, selectionLength)
+            Assert.True(focusedOnClose)
         End Sub
 
         ''' <summary>

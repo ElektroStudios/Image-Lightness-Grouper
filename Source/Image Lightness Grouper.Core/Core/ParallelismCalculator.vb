@@ -7,7 +7,7 @@ Option Infer Off
 Imports System.ComponentModel
 Imports System.Runtime.InteropServices
 
-Imports ImageLightnessGrouper.Win32
+Imports ImageLightnessGrouper.Core.Win32
 
 #End Region
 

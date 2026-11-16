@@ -34,8 +34,8 @@ Imports System.Runtime.InteropServices
 '      Revision
 '
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.1.0.0")>
+<Assembly: AssemblyFileVersion("1.1.0.0")>
 <Assembly: NeutralResourcesLanguage("en")>
 
 ' Grants the unit test project access to Friend members.

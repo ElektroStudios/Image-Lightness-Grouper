@@ -163,6 +163,20 @@ Namespace ImageLightnessGrouper.Controls
         End Property
 
         ''' <summary>
+        ''' Gets or sets the number of characters selected.
+        ''' </summary>
+        <Browsable(False)>
+        <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
+        Public Property SelectionLength As Integer
+            Get
+                Return Me.innerTextBox.SelectionLength
+            End Get
+            Set(value As Integer)
+                Me.innerTextBox.SelectionLength = value
+            End Set
+        End Property
+
+        ''' <summary>
         ''' Gets the height of a single-line instance for the current font.
         ''' </summary>
         Private ReadOnly Property SingleLineHeight As Integer
@@ -208,6 +222,15 @@ Namespace ImageLightnessGrouper.Controls
         ''' </summary>
         Public Sub SelectAll()
             Me.innerTextBox.SelectAll()
+        End Sub
+
+        ''' <summary>
+        ''' Places the caret at the end of the text, without selection, and scrolls the text so the caret is visible
+        ''' (e.g. the end of a long path, which is its most relevant part).
+        ''' </summary>
+        Public Sub MoveCaretToEnd()
+            Me.innerTextBox.Select(Me.innerTextBox.TextLength, 0)
+            Me.innerTextBox.ScrollToCaret()
         End Sub
 
 #End Region
