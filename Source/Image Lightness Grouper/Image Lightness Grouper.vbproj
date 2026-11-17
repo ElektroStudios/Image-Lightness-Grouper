@@ -212,5 +212,6 @@
   -->
   <Target Name="RemoveUnusedSkiaSharpArm64Library" AfterTargets="Build">
     <RemoveDir Directories="$(OutDir)arm64" />
+    <Delete Files="$(OutDir)libSkiaSharp.dylib" />
   </Target>
 </Project>
